@@ -2,7 +2,8 @@ const express=require('express');
 const mongoose=require('mongoose');
 const MONGO_URI=require('./config').MONGOURI;
 
-
+//import router
+const userrouter=require('./routes/user');
 //app
 const app=express();
 
@@ -16,9 +17,8 @@ mongoose.connect(MONGO_URI,{
     console.log("mongoose connected...");
 })
 
-app.get('/',(req,res)=>{
-res.send('hello pramod');
-});
+//routes middleware
+app.use('/api',userrouter);
 
 const port=process.env.port || 8000;
 
